@@ -4,12 +4,14 @@
   "description": "Generates a random quote",
   "main": "quote-svc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "nodemon --inspect quote-svc.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "nodemon": "^1.18.4",
     "random-quote": "0.0.1"
   }
 }

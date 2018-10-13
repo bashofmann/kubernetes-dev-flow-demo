@@ -9,7 +9,10 @@ app.get('/health', (req, res) => {
 
 app.get('/quote', (req, res) => {
     randomQuote()
-        .then(quote => res.send(quote))
+        .then(quote => {
+            quote[0].title = quote[0].title.toLowerCase();
+            res.send(quote);
+        })
         .catch(err => res.send(err));
 });
 
