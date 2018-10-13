@@ -1,0 +1,7 @@
+.idea
+/web/vendor/
+/hello-svc/hello-svc
+/forge.yaml
+node_modules
+.forge
+*.log

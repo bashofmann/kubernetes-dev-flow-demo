@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{build.profile.namespace}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{service.name}}
+  namespace: {{build.profile.namespace}}
+spec:
+  selector:
+    app: {{service.name}}
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{service.name}}
+  namespace: {{build.profile.namespace}}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: {{service.name}}}
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels: {app: {{service.name}}}
+      name: {{service.name}}
+    spec:
+      containers:
+      - image: {{build.images["Dockerfile"]}}
+        name: {{service.name}}
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: {{service.name}}
+  namespace: {{build.profile.namespace}}
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - {{build.profile.hostname}}
+    secretName: {{service.name}}-tls-secret
+  rules:
+  - host: {{build.profile.hostname}}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{service.name}}
+          servicePort: 80

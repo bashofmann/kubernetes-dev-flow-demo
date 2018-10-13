@@ -1,0 +1,4 @@
+/vendor/
+/k8s/
+/service.yaml
+/.forge/
