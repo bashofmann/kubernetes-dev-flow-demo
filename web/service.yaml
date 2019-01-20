@@ -2,10 +2,10 @@ name: web
 
 profiles:
   default:
-    hostname: dev-flow-demo.k8s.bastianhofmann.de
+    hostname: dev-flow-demo.bastian.plgrnd.be
     namespace: dev-flow-demo
   stage:
-    hostname: dev-flow-demo-stage.k8s.bastianhofmann.de
+    hostname: dev-flow-demo-stage.bastian.plgrnd.be
     namespace: dev-flow-demo-stage
 
 requires:
