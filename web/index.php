@@ -12,16 +12,19 @@ $app->get('/', function (Request $request, Response $response) {
     $client = new \GuzzleHttp\Client();
     $helloSvcResponse = $client->request(
         'GET',
-        'http://hello-svc/?name=' . urlencode($name)
+        'http://dev-hello-svc/?name=' . urlencode($name)
     );
     $quoteSvcResponse = $client->request(
         'GET',
-        'http://quote-svc/quote'
+        'http://dev-quote-svc/quote'
     );
     $quotes = json_decode($quoteSvcResponse->getBody());
     $response->getBody()->write('<p>' . $helloSvcResponse->getBody() . '</p>');
     $response->getBody()->write('<b>' . $quotes[0]->title . ' said:</b> ' . $quotes[0]->content);
 
     return $response;
+});
+$app->get('/health', function (Request $request, Response $response) {
+    return $response->withStatus(200);
 });
 $app->run();

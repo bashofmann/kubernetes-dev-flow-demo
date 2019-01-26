@@ -1,0 +1,14 @@
+image:
+  pullPolicy: Always
+  tag: ""
+
+ingress:
+  enabled: true
+  annotations: {}
+  paths: ["/"]
+  hosts:
+    - dev-flow-demo.k8s.bastianhofmann.de
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
