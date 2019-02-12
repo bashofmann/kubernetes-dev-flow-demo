@@ -2,8 +2,12 @@ image:
   pullPolicy: Always
   tag: ""
 
+service:
+  type: LoadBalancer
+  port: 9090
+
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
   paths: ["/"]
   hosts:
