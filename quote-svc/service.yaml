@@ -1,7 +1,0 @@
-name: quote-svc
-
-profiles:
-  default:
-    namespace: dev-flow-demo
-  stage:
-    namespace: dev-flow-demo-stage
