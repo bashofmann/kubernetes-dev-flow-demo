@@ -14,4 +14,4 @@ COPY . /app/
 
 EXPOSE 3000
 
-ENTRYPOINT ["node", "quote-svc.js"]
+ENTRYPOINT ["npm", "run", "debug"]
